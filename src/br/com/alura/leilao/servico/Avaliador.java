@@ -12,7 +12,8 @@ public class Avaliador {
         for (var lance : leilao.getLances()) {
             if (lance.getValor() > maiorLance) {
                 this.maiorLance = lance.getValor();
-            } else if (lance.getValor() < menorLance) {
+            } 
+            if (lance.getValor() < menorLance) {
                 this.menorLance = lance.getValor();
             }
         }
