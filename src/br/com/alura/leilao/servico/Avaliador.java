@@ -37,9 +37,7 @@ public class Avaliador {
         	
 		});
         
-        // Estamos pegando três elementos da lista sem checar seu tamanho, isso faz quebrar
-        // um dos meus testes
-        maioresLances = maioresLances.subList(0, 3);
+        maioresLances = maioresLances.subList(0, maioresLances.size() > 3 ? 3 : maioresLances.size());
     }
 
     public double getMaiorLance() {

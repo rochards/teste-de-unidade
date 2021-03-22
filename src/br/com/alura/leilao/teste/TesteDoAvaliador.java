@@ -76,7 +76,10 @@ public class TesteDoAvaliador {
 
 	    // parte 3: validacao
 	    assertEquals(3, maioresLances.size());
-	    assertEquals(250, leiloeiro.getMenorLance(), 0.00001);
+	    assertEquals(400, maioresLances.get(0).getValor(), 0.00001);
+	    assertEquals(300, maioresLances.get(1).getValor(), 0.00001);
+	    assertEquals(200, maioresLances.get(2).getValor(), 0.00001);
+	    
 	}
 	
 }
