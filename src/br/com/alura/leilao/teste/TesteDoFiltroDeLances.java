@@ -70,4 +70,18 @@ public class TesteDoFiltroDeLances {
 		
 		assertEquals(0, resultado.size());
 	}
+	
+	@Test
+	public void naoDeveSelecionarLancesMenoresOuIgualA500() {
+		Usuario joao = new Usuario("Joao");
+		
+		FiltroDeLances filtro = new FiltroDeLances();
+		List<Lance> resultado = filtro.filtra(Arrays.asList(
+				new Lance(joao,500),
+				new Lance(joao,300),
+				new Lance(joao,0),
+				new Lance(joao,-300)));
+		
+		assertEquals(0, resultado.size());
+	}
 }
