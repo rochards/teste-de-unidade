@@ -1,6 +1,7 @@
 package br.com.alura.leilao.teste;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 import br.com.alura.leilao.dominio.Lance;
@@ -11,7 +12,7 @@ import br.com.alura.leilao.servico.Avaliador;
 public class TesteDoAvaliador {
 	
 	@Test
-	public void teste() {
+	public void testeEmOrdemCrescente() {
 		// parte 1: cenario
 	    Usuario joao = new Usuario("joao");
 	    Usuario jose = new Usuario("jose");
@@ -29,7 +30,28 @@ public class TesteDoAvaliador {
 	    leiloeiro.avalia(leilao);
 
 	    // parte 3: validacao
-	    Assert.assertEquals(400, leiloeiro.getMaiorLance(), 0.00001);
-	    Assert.assertEquals(250, leiloeiro.getMenorLance(), 0.00001);
+	    assertEquals(400, leiloeiro.getMaiorLance(), 0.00001);
+	    assertEquals(250, leiloeiro.getMenorLance(), 0.00001);
 	}
+	
+	@Test
+	public void testeLielaoComUmLance() {
+		
+		// parte 1: cenario
+	    Usuario joao = new Usuario("joao");
+
+	    Leilao leilao = new Leilao("Playstation 5");
+
+	    // esses valores vao gerar um bug
+	    leilao.propoe(new Lance(joao, 250));
+
+	    // parte 2: acao
+	    Avaliador leiloeiro = new Avaliador();
+	    leiloeiro.avalia(leilao);
+
+	    // parte 3: validacao
+	    assertEquals(250, leiloeiro.getMaiorLance(), 0.00001);
+	    assertEquals(250, leiloeiro.getMenorLance(), 0.00001);
+	}
+	
 }
