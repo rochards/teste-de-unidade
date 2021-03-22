@@ -57,4 +57,17 @@ public class TesteDoFiltroDeLances {
 		assertEquals(5001, resultado.get(0).getValor(), 0.00001);
 		assertEquals(5003, resultado.get(1).getValor(), 0.00001);
 	}
+	
+	@Test
+	public void deveSelecionarLancesEntre3000E5000() {
+		Usuario joao = new Usuario("Joao");
+		
+		FiltroDeLances filtro = new FiltroDeLances();
+		List<Lance> resultado = filtro.filtra(Arrays.asList(
+				new Lance(joao,4000),
+				new Lance(joao,3050),
+				new Lance(joao,5000)));
+		
+		assertEquals(0, resultado.size());
+	}
 }
