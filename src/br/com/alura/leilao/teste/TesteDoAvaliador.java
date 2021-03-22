@@ -105,4 +105,47 @@ public class TesteDoAvaliador {
 	    
 	}
 	
+	@Test
+	public void deveEncontrarOsDoisMaioresLances() {
+		// parte 1: cenario
+	    Usuario joao = new Usuario("joao");
+	    Usuario jose = new Usuario("jose");
+
+	    Leilao leilao = new Leilao("Playstation 5");
+
+	    // esses valores vao gerar um bug
+	    leilao.propoe(new Lance(joao, 100));
+	    leilao.propoe(new Lance(jose, 200));
+	   
+	    // parte 2: acao
+	    Avaliador leiloeiro = new Avaliador();
+	    leiloeiro.avalia(leilao);
+	    
+	    var maioresLances = leiloeiro.getTresMaioresLances();
+
+	    // parte 3: validacao
+	    assertEquals(2, maioresLances.size());
+	    assertEquals(200, maioresLances.get(0).getValor(), 0.00001);
+	    assertEquals(100, maioresLances.get(1).getValor(), 0.00001); 
+	}
+	
+	@Test
+	public void deveRetornarListaVazia() {
+		// parte 1: cenario
+	    Usuario joao = new Usuario("joao");
+	    Usuario jose = new Usuario("jose");
+
+	    Leilao leilao = new Leilao("Playstation 5");
+
+	   
+	    // parte 2: acao
+	    Avaliador leiloeiro = new Avaliador();
+	    leiloeiro.avalia(leilao);
+	    
+	    var maioresLances = leiloeiro.getTresMaioresLances();
+
+	    // parte 3: validacao
+	    assertEquals(0, maioresLances.size());
+	}
+	
 }
