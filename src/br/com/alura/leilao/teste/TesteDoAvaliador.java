@@ -35,6 +35,29 @@ public class TesteDoAvaliador {
 	}
 	
 	@Test
+	public void testeEmOrdemDecrescente() {
+		// parte 1: cenario
+	    Usuario joao = new Usuario("joao");
+	    Usuario jose = new Usuario("jose");
+	    Usuario maria = new Usuario("maria");
+
+	    Leilao leilao = new Leilao("Playstation 5");
+
+	    // esses valores vao gerar um bug
+	    leilao.propoe(new Lance(joao, 1000));
+	    leilao.propoe(new Lance(jose, 750));
+	    leilao.propoe(new Lance(maria, 400));
+
+	    // parte 2: acao
+	    Avaliador leiloeiro = new Avaliador();
+	    leiloeiro.avalia(leilao);
+
+	    // parte 3: validacao
+	    assertEquals(1000, leiloeiro.getMaiorLance(), 0.00001);
+	    assertEquals(400, leiloeiro.getMenorLance(), 0.00001);
+	}
+	
+	@Test
 	public void testeLielaoComUmLance() {
 		
 		// parte 1: cenario
