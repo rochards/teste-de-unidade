@@ -2,6 +2,7 @@ package br.com.alura.leilao.teste;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,6 +28,11 @@ public class TesteDoAvaliador {
 	    this.maria = new Usuario("maria");
 	    
 	    System.out.println("--- executa avaliador --- ");
+	}
+	
+	@AfterEach
+	public void finalizaCada() {
+		System.out.println("---- término do teste ----");
 	}
 	
 	@Test
