@@ -2,6 +2,7 @@ package br.com.alura.leilao.teste;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.com.alura.leilao.dominio.Lance;
@@ -10,6 +11,13 @@ import br.com.alura.leilao.dominio.Usuario;
 import br.com.alura.leilao.servico.Avaliador;
 
 public class TesteDoAvaliador {
+	
+	private Avaliador leiloeiro;
+
+	@BeforeEach
+	public void criaAvaliador() {
+		leiloeiro = new Avaliador();
+	}
 	
 	@Test
 	public void testeEmOrdemCrescente() {
@@ -26,7 +34,6 @@ public class TesteDoAvaliador {
 	    leilao.propoe(new Lance(maria, 400));
 
 	    // parte 2: acao
-	    Avaliador leiloeiro = new Avaliador();
 	    leiloeiro.avalia(leilao);
 
 	    // parte 3: validacao
@@ -49,7 +56,6 @@ public class TesteDoAvaliador {
 	    leilao.propoe(new Lance(maria, 400));
 
 	    // parte 2: acao
-	    Avaliador leiloeiro = new Avaliador();
 	    leiloeiro.avalia(leilao);
 
 	    // parte 3: validacao
@@ -69,7 +75,6 @@ public class TesteDoAvaliador {
 	    leilao.propoe(new Lance(joao, 250));
 
 	    // parte 2: acao
-	    Avaliador leiloeiro = new Avaliador();
 	    leiloeiro.avalia(leilao);
 
 	    // parte 3: validacao
@@ -92,7 +97,6 @@ public class TesteDoAvaliador {
 	    leilao.propoe(new Lance(jose, 400));
 	   
 	    // parte 2: acao
-	    Avaliador leiloeiro = new Avaliador();
 	    leiloeiro.avalia(leilao);
 	    
 	    var maioresLances = leiloeiro.getTresMaioresLances();
@@ -118,7 +122,6 @@ public class TesteDoAvaliador {
 	    leilao.propoe(new Lance(jose, 200));
 	   
 	    // parte 2: acao
-	    Avaliador leiloeiro = new Avaliador();
 	    leiloeiro.avalia(leilao);
 	    
 	    var maioresLances = leiloeiro.getTresMaioresLances();
@@ -139,7 +142,6 @@ public class TesteDoAvaliador {
 
 	   
 	    // parte 2: acao
-	    Avaliador leiloeiro = new Avaliador();
 	    leiloeiro.avalia(leilao);
 	    
 	    var maioresLances = leiloeiro.getTresMaioresLances();
