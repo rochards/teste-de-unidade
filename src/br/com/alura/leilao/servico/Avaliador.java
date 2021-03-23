@@ -16,6 +16,11 @@ public class Avaliador {
 	private List<Lance> maioresLances;
 
     public void avalia(Leilao leilao) {
+    	
+    	if (leilao.getLances().size() == 0) {
+    		throw new RuntimeException("Não é possível avaliar um leilão sem lances");
+    	}
+    	
         for (var lance : leilao.getLances()) {
             if (lance.getValor() > maiorLance) {
                 this.maiorLance = lance.getValor();
