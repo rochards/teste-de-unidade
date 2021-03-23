@@ -15,8 +15,16 @@ public class Leilao {
     }
 
     public void propoe(Lance lance) {
-        lances.add(lance);
+    	// Regra: usuario nao deve dar dois lances seguidos
+    	if (lances.isEmpty() || !ultimoLanceDado().getUsuario().equals(lance.getUsuario())) {
+    		lances.add(lance);
+    	}
     }
+
+	private Lance ultimoLanceDado() {
+		var listSize = lances.size();
+		return lances.get(listSize - 1);
+	}
 
     public String getDescricao() {
         return descricao;

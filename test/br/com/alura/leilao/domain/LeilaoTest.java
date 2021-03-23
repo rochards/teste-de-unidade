@@ -31,4 +31,15 @@ public class LeilaoTest {
 		assertEquals(2000.0, leilao.getLances().get(0).getValor(), 0.00001);
 		assertEquals(4000.0, leilao.getLances().get(1).getValor(), 0.00001);
 	}
+	
+	@Test
+	public void naoDeveAceitarDoisLancesSeguidosDoMesmoUsuario() {
+		Leilao leilao = new Leilao("Macbook Pro");
+		
+		leilao.propoe(new Lance(new Usuario("Marcio"), 2000));
+		leilao.propoe(new Lance(new Usuario("Marcio"), 3000));
+		
+		assertEquals(1, leilao.getLances().size());
+		assertEquals(2000.0, leilao.getLances().get(0).getValor(), 0.00001);
+	}
 }
