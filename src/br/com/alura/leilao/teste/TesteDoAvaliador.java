@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import br.com.alura.leilao.builder.CriadorDeLeilao;
 import br.com.alura.leilao.dominio.Lance;
 import br.com.alura.leilao.dominio.Leilao;
 import br.com.alura.leilao.dominio.Usuario;
@@ -19,11 +20,11 @@ public class TesteDoAvaliador {
 
 	@BeforeEach
 	public void criaAvaliador() {
-		leiloeiro = new Avaliador();
+		this.leiloeiro = new Avaliador();
 		
-		joao = new Usuario("joao");
-	    jose = new Usuario("jose");
-	    maria = new Usuario("maria");
+		this.joao = new Usuario("joao");
+	    this.jose = new Usuario("jose");
+	    this.maria = new Usuario("maria");
 	    
 	    System.out.println("--- executa avaliador --- ");
 	}
@@ -84,13 +85,12 @@ public class TesteDoAvaliador {
 	@Test
 	public void deveEncontrarOsTresMaioresLances() {
 		// parte 1: cenario
-	   	Leilao leilao = new Leilao("Playstation 5");
-
-	    // esses valores vao gerar um bug
-	    leilao.propoe(new Lance(joao, 100));
-	    leilao.propoe(new Lance(jose, 200));
-	    leilao.propoe(new Lance(joao, 300));
-	    leilao.propoe(new Lance(jose, 400));
+	    Leilao leilao = new CriadorDeLeilao().para("Playstation 5 Novo")
+	    		.lance(joao, 100)
+	    		.lance(maria, 200)
+	    		.lance(joao, 300)
+	    		.lance(maria, 400)
+	    		.constroi();
 	   
 	    // parte 2: acao
 	    leiloeiro.avalia(leilao);
