@@ -23,6 +23,25 @@ public class Leilao {
     		lances.add(lance);
     	}
     }
+    
+
+	public void dobraLance(Usuario usuario) {
+		Lance ultimoLance = null;
+		for (var l : lances) {
+			if (l.getUsuario().equals(usuario)) {
+				ultimoLance = l;
+				break;
+			}
+		}
+		if (ultimoLance == null) {
+			return;
+		}
+		
+		var valorDobrado = ultimoLance.getValor() * 2;
+		Lance lanceDobrado = new Lance(usuario, valorDobrado);
+		
+		propoe(lanceDobrado);
+	}
 
 	private int qtdLancesDoUsuario(Usuario usuario) {
 		int total = 0;
@@ -46,5 +65,4 @@ public class Leilao {
     public List<Lance> getLances() {
         return Collections.unmodifiableList(lances);
     }
-
 }

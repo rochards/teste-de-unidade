@@ -69,4 +69,37 @@ public class LeilaoTest {
 		assertEquals(10, leilao.getLances().size());
 		assertEquals(687.0, leilao.getLances().get(9).getValor(), 0.00001);
 	}
+	
+	@Test
+	public void deveDobrarOLance() {
+		Leilao leilao = new Leilao("Macbook Pro");
+		var marcio = new Usuario("Marcio");
+		var roberto = new Usuario("Roberto");
+		
+		leilao.propoe(new Lance(marcio, 3000));
+		leilao.propoe(new Lance(roberto, 2300));
+		
+		leilao.dobraLance(marcio);
+		
+		assertEquals(3, leilao.getLances().size());
+		assertEquals(6000.0, leilao.getLances().get(2).getValor());
+		
+	}
+	
+	@Test
+	public void naoDeveDobrarOLanceParaOUltimoUsuario() {
+		Leilao leilao = new Leilao("Macbook Pro");
+		var marcio = new Usuario("Marcio");
+		var roberto = new Usuario("Roberto");
+		
+		leilao.propoe(new Lance(marcio, 3000));
+		leilao.propoe(new Lance(roberto, 2300));
+		
+		leilao.dobraLance(roberto);
+		
+		assertEquals(2, leilao.getLances().size());
+		assertEquals(2300.0, leilao.getLances().get(1).getValor());
+	}
+	
+	// deve criar o teste para o caso de 5 lances do mesmo usuario
 }
