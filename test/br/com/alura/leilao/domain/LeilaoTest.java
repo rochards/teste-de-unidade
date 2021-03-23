@@ -42,4 +42,31 @@ public class LeilaoTest {
 		assertEquals(1, leilao.getLances().size());
 		assertEquals(2000.0, leilao.getLances().get(0).getValor(), 0.00001);
 	}
+	
+	@Test
+	public void naoDeveAceitarMaisDoQue5LancesDeUmMesmoUsuario() {
+		Leilao leilao = new Leilao("Macbook Pro");
+		var marcio = new Usuario("Marcio");
+		var roberto = new Usuario("Roberto");
+		
+		leilao.propoe(new Lance(marcio, 2000));
+		leilao.propoe(new Lance(roberto, 350));
+		
+		leilao.propoe(new Lance(marcio, 3000));
+		leilao.propoe(new Lance(roberto, 3000));
+		
+		leilao.propoe(new Lance(marcio, 3971));
+		leilao.propoe(new Lance(roberto, 3000));
+		
+		leilao.propoe(new Lance(marcio, 4671)); 
+		leilao.propoe(new Lance(roberto, 687));
+		
+		leilao.propoe(new Lance(marcio, 4777));
+		leilao.propoe(new Lance(roberto, 687));
+
+		leilao.propoe(new Lance(marcio, 4777)); // deve ser ignorado
+		
+		assertEquals(10, leilao.getLances().size());
+		assertEquals(687.0, leilao.getLances().get(9).getValor(), 0.00001);
+	}
 }

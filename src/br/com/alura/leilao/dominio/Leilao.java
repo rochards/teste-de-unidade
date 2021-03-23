@@ -15,11 +15,24 @@ public class Leilao {
     }
 
     public void propoe(Lance lance) {
+    	// Regra: usuario nao deve dar mais de 5 lances
+    	int total = qtdLancesDoUsuario(lance.getUsuario());
+    	
     	// Regra: usuario nao deve dar dois lances seguidos
-    	if (lances.isEmpty() || !ultimoLanceDado().getUsuario().equals(lance.getUsuario())) {
+    	if (lances.isEmpty() || (!ultimoLanceDado().getUsuario().equals(lance.getUsuario()) && total < 5)) {
     		lances.add(lance);
     	}
     }
+
+	private int qtdLancesDoUsuario(Usuario usuario) {
+		int total = 0;
+    	for (var l : lances) {
+    		if (l.getUsuario().equals(usuario)) {
+    			total++;
+    		}
+    	}
+		return total;
+	}
 
 	private Lance ultimoLanceDado() {
 		var listSize = lances.size();
