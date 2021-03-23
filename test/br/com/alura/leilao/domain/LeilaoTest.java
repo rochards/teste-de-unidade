@@ -1,9 +1,13 @@
 package br.com.alura.leilao.domain;
 
+import static br.com.alura.leilao.servico.LeilaoMatcher.temUmLance;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.alura.leilao.builder.CriadorDeLeilao;
 import br.com.alura.leilao.dominio.Lance;
 import br.com.alura.leilao.dominio.Leilao;
 import br.com.alura.leilao.dominio.Usuario;
@@ -102,4 +106,18 @@ public class LeilaoTest {
 	}
 	
 	// deve criar o teste para o caso de 5 lances do mesmo usuario
+	
+	
+	@Test
+	public void deveReceberUmLance2() {
+		
+		Leilao leilao = new CriadorDeLeilao().para("PS5").constroi();
+		assertEquals(0, leilao.getLances().size());
+		
+		Lance lance = new Lance(new Usuario("Steve"), 2500);
+		leilao.propoe(lance);
+		
+		assertThat(leilao.getLances().size(), equalTo(1));
+		assertThat(leilao, temUmLance(lance));
+	}
 }
