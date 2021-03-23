@@ -13,19 +13,24 @@ import br.com.alura.leilao.servico.Avaliador;
 public class TesteDoAvaliador {
 	
 	private Avaliador leiloeiro;
+	private Usuario joao;
+	private Usuario jose;
+	private Usuario maria;
 
 	@BeforeEach
 	public void criaAvaliador() {
 		leiloeiro = new Avaliador();
+		
+		joao = new Usuario("joao");
+	    jose = new Usuario("jose");
+	    maria = new Usuario("maria");
+	    
+	    System.out.println("--- executa avaliador --- ");
 	}
 	
 	@Test
 	public void testeEmOrdemCrescente() {
 		// parte 1: cenario
-	    Usuario joao = new Usuario("joao");
-	    Usuario jose = new Usuario("jose");
-	    Usuario maria = new Usuario("maria");
-
 	    Leilao leilao = new Leilao("Playstation 5");
 
 	    // esses valores vao gerar um bug
@@ -44,10 +49,6 @@ public class TesteDoAvaliador {
 	@Test
 	public void testeEmOrdemDecrescente() {
 		// parte 1: cenario
-	    Usuario joao = new Usuario("joao");
-	    Usuario jose = new Usuario("jose");
-	    Usuario maria = new Usuario("maria");
-
 	    Leilao leilao = new Leilao("Playstation 5");
 
 	    // esses valores vao gerar um bug
@@ -67,8 +68,6 @@ public class TesteDoAvaliador {
 	public void testeLielaoComUmLance() {
 		
 		// parte 1: cenario
-	    Usuario joao = new Usuario("joao");
-
 	    Leilao leilao = new Leilao("Playstation 5");
 
 	    // esses valores vao gerar um bug
@@ -85,10 +84,7 @@ public class TesteDoAvaliador {
 	@Test
 	public void deveEncontrarOsTresMaioresLances() {
 		// parte 1: cenario
-	    Usuario joao = new Usuario("joao");
-	    Usuario jose = new Usuario("jose");
-
-	    Leilao leilao = new Leilao("Playstation 5");
+	   	Leilao leilao = new Leilao("Playstation 5");
 
 	    // esses valores vao gerar um bug
 	    leilao.propoe(new Lance(joao, 100));
@@ -112,9 +108,6 @@ public class TesteDoAvaliador {
 	@Test
 	public void deveEncontrarOsDoisMaioresLances() {
 		// parte 1: cenario
-	    Usuario joao = new Usuario("joao");
-	    Usuario jose = new Usuario("jose");
-
 	    Leilao leilao = new Leilao("Playstation 5");
 
 	    // esses valores vao gerar um bug
@@ -135,8 +128,6 @@ public class TesteDoAvaliador {
 	@Test
 	public void deveRetornarListaVazia() {
 		// parte 1: cenario
-	    Usuario joao = new Usuario("joao");
-	    Usuario jose = new Usuario("jose");
 
 	    Leilao leilao = new Leilao("Playstation 5");
 
@@ -149,5 +140,4 @@ public class TesteDoAvaliador {
 	    // parte 3: validacao
 	    assertEquals(0, maioresLances.size());
 	}
-	
 }
